@@ -17,7 +17,7 @@
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
                         <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Новый email: </label>
+                            <div class="col-md-12 form-group"><label class="labels">Новый email: </label>
                                 <input type="text" name="email" class="form-control" placeholder="enter new email" value="">
                             </div>
                             <div class="col-md-12 form-group"><label  for="city-select" class="labels">Город: </label>
@@ -38,7 +38,27 @@
                             {{ csrf_field() }}
                           <button class="btn medica-btn mt-15">Сохранить изменения</button>
                         </div>
+
                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <div class="line">
+
+                                <div class="col-md-12"><label class="labels">Сведения об образовании**: </label>
+                                    <input type="text" name="education" class="form-control" placeholder="дополнительное образование.." value="">
+                                </div>
+
+                                <div class="col-md-12"><label class="labels">Сведения о повышении квалификации, курсах(вводятся через запятую): </label>
+                                    <input type="text" name="certificate" class="form-control" placeholder="сертификаты.." value="">
+                                </div>
+
+                                <div class="col-md-12"><label class="labels">Дополнительные сведения о врачебной специализации: </label>
+                                    <input type="text" name="spec" class="form-control" placeholder="специализация.." value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

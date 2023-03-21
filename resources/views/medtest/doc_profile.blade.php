@@ -3,8 +3,6 @@
 @endsection
 @section('content')
 
-
-
     <div class="container rounded bg-white mt-10 mb-10" style="margin-bottom: 20px; padding-bottom: 20px" >
     <div class="row" >
         <div class="col-md-3 border-right">
@@ -26,19 +24,22 @@
                     <div class="col-md-12"><label class="labels"></label><span class="label">CREATE </span></div>
                 </div>
 
-
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
                 <div class="line">
-                <div class="col-md-12"><label class="labels">Опубликованные статьи </label> <br>
-                <div class="col-md-12"><label class="label">статьи....</label></div>
+                    <div class="col-md-12"><label class="labels">Опубликованные статьи </label> <br>
+                        <div class="col-md-12"><label class="label">статьи....</label></div>
+                    </div>
                 </div>
-                </div>
-        </div>
-    </div>
-
+         </div>
+      </div>
+        @if  (Auth::check()&&$user = auth()->user()->email==$doctor->email)
+            <div class="text-center" style=" margin-top: 20px; margin-left: 64px;">
+                <a class="btn btn-primary profile-button" style="background-color: #721c24"
+                   href="edit_profile">Редактировать</a></div>
+        @endif
 </div>
 </div>
 </div>

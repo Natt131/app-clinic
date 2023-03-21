@@ -33,6 +33,15 @@ class ProfileDoctorController extends Controller
     public function updateData(Request $request)
     {
         $user = auth()->user();
+        $doctor=DB::table('doctors')->where('email', $user->email)->first();
+
+        if(!DB::table('info_docs')->where('id_doc', $doctor->id)->first()){
+            DB::table('info_docs')
+                ->insert([
+                    ['id_doc' => $doctor->id],
+                ]);
+        }
+       // dd($request->education, $request->certificate, $request->spec);
         $filename = null;
 
         if ($request->isMethod('post') && $request->file('file')) {
@@ -47,7 +56,6 @@ class ProfileDoctorController extends Controller
             Storage::putFileAs($upload_folder, $file, $filename);
             $path = Storage::path($filename);
         }
-
 
         if ($request->file('file')!=null){
             DB::table('doctors')
@@ -79,6 +87,41 @@ class ProfileDoctorController extends Controller
                     ['avatar' => 'avatars\\' . $filename],
                 );
 
+        }
+
+        if($request->education!=null){
+            DB::table('info_docs')
+                ->where('id_doc', '=', $doctor->id)
+                ->update(['education' => $request->education]
+                );
+        }
+
+        if($request->certificate!=null){
+            DB::table('info_docs')
+                ->where('id_doc', '=', $doctor->id)
+                ->update(['certificate' => $request->certificate]
+                );
+        }
+
+        if($request->certificate!=null){
+            DB::table('info_docs')
+                ->where('id_doc', '=', $doctor->id)
+                ->update(['certificate' => $request->certificate]
+                );
+        }
+
+        if($request->certificate!=null){
+            DB::table('info_docs')
+                ->where('id_doc', '=', $doctor->id)
+                ->update(['certificate' => $request->certificate]
+                );
+        }
+
+        if($request->spec!=null){
+            DB::table('info_docs')
+                ->where('id_doc', '=', $doctor->id)
+                ->update(['spec' => $request->spec]
+                );
         }
 
 //        $doctor->save();
