@@ -24,7 +24,7 @@
                 <div class="single-doctor-area wow fadeInUp" data-wow-delay="0.2s">
                     <div class="doctor-thumbnail">
                         <a href="doc_profile/{{$doct->id}}">
-                            <img src="../../../img/bg-img/d1.jpg" alt=""> </a>
+                            <img src="/public/{{$doct->avatar}}" alt=""> </a>
                     </div>
                     <div class="doctor-meta">
                         <h5> {{$doct->name}} </h5>

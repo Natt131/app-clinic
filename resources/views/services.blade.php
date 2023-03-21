@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-
+1
                 <div class="col-12 col-md-6 col-lg-8">
                     <div class="all-services">
                         <div class="row">
