@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Models\doctors;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use DB;
 
 class ChatController extends Controller
 {
     public function create(Request $request){
         $user = auth()->user();
-
         $chat = new Chat();
         $chat->doctor_id = $request->user_id;
         $chat->user_id = $user->id;
@@ -36,6 +37,21 @@ class ChatController extends Controller
                 ->where('user_id', '=', $request->user_id);
         })->get();
 
-        return view('chats', ['chats'=>$chats]);
+        $users = DB::table('chats')
+            ->join('users', 'chats.user_id', '=', 'users.id')
+            //->join('doctors', 'doctors.id_user', '=', $request->user_id)
+            ->select('users.name',  'users.id')->distinct()//
+            ->get();
+
+        $doctor=DB::table('doctors')
+          //  ->join('uss', 'chats.user_id', '=', 'users.id')
+            // ->join('do', 'users.id', '=', 'orders.user_id')
+            ->select('doctors.name', 'doctors.family', 'doctors.avatar')
+            ->where('doctors.id_user', '=', $request->user_id)//
+            ->get()->first();
+        //dd($doctor);
+
+       // dd($users);
+        return view('chats', ['chats'=>$chats, 'doctor'=>$doctor, 'users'=>$users]);
     }
 }

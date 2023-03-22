@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
+use DB;
 
 class RegisteredDoctorController extends Controller
 {
@@ -23,7 +24,6 @@ class RegisteredDoctorController extends Controller
      */
     public function create()
     {
-
         return view('auth\doctor-register');//auth.register
     }
 
@@ -65,6 +65,11 @@ class RegisteredDoctorController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $user=auth()->user();
+        DB::table('doctors')
+            ->where('email', '=', $user->email)
+            ->update(['id_user' => $user->id]);
 
         return redirect(RouteServiceProvider::HOME);
     }

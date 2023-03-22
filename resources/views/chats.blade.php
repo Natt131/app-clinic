@@ -2,90 +2,103 @@
 @section(('styles'))
 @endsection
 @section('content')
-<div style="background-color: white">
-     <section class="breadcumb-area bg-img gradient-background-overlay" style="background-image: url(../../../img/bg-img/hero3.jpg);">
-     <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcumb-content">
-                        <!-- Title -->
-                        <h3 class="breadcumb-title">Services</h3>
-                        <!-- Breadcumb -->
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Services</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="medica-services-area section_padding_100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="medica-services-sidebar-area">
-                        <!-- Medica Doctors Card -->
-                        <div class="medica-department-card">
-                            <h5>Our Departments</h5>
-                            <ul class="department-menu">
-                                <li><a href="#">Radiology</a></li>
-                                <li><a href="#">Cardiology</a></li>
-                                <li><a href="#">Gastroenterology</a></li>
-                                <li><a href="#">Neurology</a></li>
-                                <li><a href="#">General surgery</a></li>
-                                <li><a href="#">Haematology</a></li>
-                                <li><a href="#">Nutrition</a></li>
-                                <li><a href="#">Obstetrics</a></li>
-                                <li><a href="#">Ophthalmology</a></li>
-                            </ul>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card chat-app">
+                    <div id="plist" class="people-list">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search...">
                         </div>
+                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                            @foreach($users as $use)
+                                <li class="clearfix">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                    <div class="about">
+                                        <div class="name">{{$use->name}}</div>
+                                        <a class="status" href="chats?user_id={{$use->id}}"> <i class="fa fa-circle offline"></i> Перейти к диалогу.. </a>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
+                    <div class="chat">
+                        <div class="chat-header clearfix">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src="/public/{{$doctor->avatar}}" alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0">{{$doctor->name}} {{$doctor->family}}</h6>
+                                        <small>Last seen: 2 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 hidden-sm text-right">
+                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-history">
+                            <ul class="m-b-0">
 
-                <div class="col-12 col-md-6 col-lg-8">
-                    <div class="all-services">
-                        <div class="row">
-                            @foreach($chats as $chat)
-                            <!-- Single Service -->
-
-                                <div class="col-8 " style="background-color:
+                                @foreach($chats as $chat)
+                                    <!-- Single Service -->
+                                    <li class="clearfix">
+                                        <div class="message-data
                                 <?php
                                 if($chat->user_id == auth()->user()->id)
-                                    print('gray');
+                                    print('text-right">');
                                 else
-                                    print('blue');
+                                    print('">');
                                 ?>
-                                ; border-radius: 8px; margin: 10px">
-                                    <p style="color: #0b0b0b"> {{$chat->message}}</p>
-                                </div>
-                            @endforeach
-                            <!-- Single Service -->
+                                 <span class="message-data-time"> {{$chat->created_at}}</span>
+                        </div>
 
+                        <div class="message other-message
+                        <?php
+                        if($chat->user_id == auth()->user()->id)
+                            print('float-right">');
+                        else
+                            print('">');
+                        ?>
+
+                       {{$chat->message}} </div>
+                        </li>
+               {{--                 ; border-radius: 8px; margin: 10px">
+                                        <p style="color: #0b0b0b"> {{$chat->message}}</p>
+                                    </div>--}}
+                                @endforeach
+                        </ul>
+                        </div>
+                        <div class="chat-message clearfix">
+
+                            <form  method="post" action="/chats" enctype="multipart/form-data">
+                                @csrf
+                                <div class="input-group mb-0">
+                                    <input type="hidden" class="form-control" name="user_id" id="user_id" value="<?php echo($_GET["user_id"]); ?>">
+                                    <input rows="10" cols="45" class="form-control" name="message" id="message"></input>
+
+                                <div class="input-group-prepend">
+                                <button type="submit" class="input-group-text"><i class="fa fa-send"></i></button>
+                                </div>  </div>
+                            </form>
                         </div>
                     </div>
-
-
-                    <div class="medica-apposintment-card">
-                        <h5>send message</h5>
-                        <form  method="post" action="/chats" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <input type="hidden" class="form-control" name="user_id" id="user_id" value="<?php echo($_GET["user_id"]); ?>">
-                                <textarea rows="10" cols="45" class="form-control" name="message" id="message"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn medica-btn mt-15">Написать</button>
-                        </form>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
 </div>
     @endsection

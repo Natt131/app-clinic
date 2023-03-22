@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/doc_profile.css">
+    <link rel="stylesheet" href="../../../css/chats.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="../../../css/responsive.css">
     <link rel="stylesheet" href="../../../css/register.css">

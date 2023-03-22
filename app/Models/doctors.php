@@ -26,6 +26,7 @@ class doctors extends Model
         'id_clinic',
         'id_speciality',
         'password',
+        'id_user',
     ];
 
     /**

@@ -41,7 +41,6 @@ class ArticleController extends Controller
 
     public function add(Request $request)
     {
-
         $filename = null;
         if ($request->isMethod('post') && $request->file('file')) {
 
@@ -58,16 +57,9 @@ class ArticleController extends Controller
 
             Storage::putFileAs($upload_folder, $file, $filename);
             $path = Storage::path($filename);
-
-            //   $upload   =(string)'ипащть'+(string)$filename;
-            // dd($upload);
         }
 
         $user = auth()->user();
-
-
-        //  dd($request->name);
-
         $product = new Article();
         $product->name = $request->name;
         $product->description = $request->description;
