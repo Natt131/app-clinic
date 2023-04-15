@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $doctors=User::where('role_user', '=', 'doctor')->get();//$doctors=User::where('role', '=', 'doctor')->get();
+        $doctors=Doctor::all();
+       // $doctors=User::where('role_user', '=', 'doctor')->get();//$doctors=User::where('role', '=', 'doctor')->get();
         return view('medtest/index', ['doctors'=>$doctors]);//
     }
 }

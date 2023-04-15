@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -19,17 +20,15 @@ class ArticleController extends Controller
 
 
     public function article_by_category($category)
-    { //$id
-        //   $posts=Product::select();
-        $id_category = Category::query()->where('category', '=',$category)->get();
-        if($id_category){
-            $article = Article::findOrFail($id_category);
-            return view('services', ['posts' => $article], ['categories' => $id_category]);//, ['posts'=>$posts]
+    {
+        $id_category = DB::table('categories')->where('category', '=',$category)->get('id');
 
+        if($id_category){
+            $categories = Category::all();
+            $posts=DB::table('articles')->where('id_category', '=', $id_category[0]->id)->get();
+            return view('services', ['posts' => $posts], ['categories' => $categories]);
         }
         return false;
-        //dd("id"+$id_category);
-            // DB::table('users')->where('name', 'John')->value('email');
     }
 
     public function list()
@@ -64,14 +63,20 @@ class ArticleController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->image = 'products\\' . $filename;
+
+        $product->id_category = $request->id_cat;
+        $product->text = $request->text;
+
         $product->id_user = $user->id;
         $product->save();
         $posts = Article::all();
-        return view('services', ['posts' => $posts]);
+        $categories = Category::all();
+        return view('services', ['posts' => $posts],['categories' => $categories]);
     }
 
     public function create()
     {
-        return view('medtest/create_article');
+        $categories = Category::all();
+        return view('medtest/create_article', ['categories' => $categories]);
     }
 }

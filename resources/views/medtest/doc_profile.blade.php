@@ -3,13 +3,22 @@
 @endsection
 @section('content')
 
+    <div class="bg-gray" style="padding-top: 20px !important; padding-bottom: 20px !important;">
+
     <div class="container rounded bg-white mt-10 mb-10" style="margin-bottom: 20px; padding-bottom: 20px" >
     <div class="row" >
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="../../../img/bg-img/d1.jpg">
-                <span class="font-weight-bold">{{$doctor->id_speciality}} терапевт</span><span class="text-black-50"></span><span> email: {{$doctor->email}}  </span></div>
-            <div class="text-center" style="margin-top: -40px;"><a class="btn btn-primary profile-button" href="/chats?user_id={{$doctor->id_user}}">Написать</a></div>
+                <img class="rounded-circle mt-5" width="150px" src="/public/{{$doctor->avatar}}">
+                <span class="font-weight-bold">{{$doctor->id_speciality}} </span><span class="text-black-50"></span><span> email: {{$doctor->email}}  </span></div>
+            @if  (Auth::check()&&$user = auth()->user()->email==$doctor->email)
+                <div class="text-center" >
+                    <a class="btn btn-primary profile-button" style="background-color: #721c24"
+                       href="edit_profile">Редактировать</a>
+                </div>
+            @else
+                <div class="text-center" style="margin-top: -40px;"><a class="btn btn-primary profile-button" href="/chats?user_id={{$doctor->id_user}}">Написать</a></div>
+            @endif
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -19,10 +28,9 @@
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Место работы: </label> <span class="label"> {{$doctor->id_clinic}} </span></div>
                     <div class="col-md-12"><label class="labels">Специальность: </label> <span class="label">{{$doctor->id_speciality}} </span></div>
-                    <div class="col-md-12"><label class="labels">Образование: </label> <span class="label"></span></div>
-                    <div class="col-md-12"><label class="labels">Повышение квалификации: </label> </div>
-                    <div class="col-md-12"><label class="labels"></label>Специализация: <span class="label">CREATE </span></div>
-
+                    <div class="col-md-12"><label class="labels">Образование: </label> {{$doctor->education}} <span class="label"></span></div>
+                    <div class="col-md-12"><label class="labels">Повышение квалификации, курсы: </label> </label> {{$doctor->certificate}}</div>
+                    <div class="col-md-12"><label class="labels">Специализация: </label> <span class="label">{{$doctor->spec}} </span></div>
                 </div>
 
             </div>
@@ -36,14 +44,11 @@
                 </div>
          </div>
       </div>
-        @if  (Auth::check()&&$user = auth()->user()->email==$doctor->email)
-            <div class="text-center" style=" margin-top: 20px; margin-left: 64px;">
-                <a class="btn btn-primary profile-button" style="background-color: #721c24"
-                   href="edit_profile">Редактировать</a></div>
-        @endif
+
 </div>
 </div>
 </div>
+    </div>
 @endsection
 <!-- ***** Partners Area End ***** -->
 @section(('scripts'))

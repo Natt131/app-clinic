@@ -33,8 +33,14 @@ class ProfileDoctorController extends Controller
     public function updateData(Request $request)
     {
         $user = auth()->user();
+
         $doctor=DB::table('doctors')->where('email', $user->email)->first();
 
+//
+//        $doctor=DB::table('doctors')->where('id_user', $user->id)->first();
+////dd($doctor);
+//        if(DB::table('info_docs')->where('id_doc', $doctor->id)->get()==null){
+//        }
         if(!DB::table('info_docs')->where('id_doc', $doctor->id)->first()){
             DB::table('info_docs')
                 ->insert([

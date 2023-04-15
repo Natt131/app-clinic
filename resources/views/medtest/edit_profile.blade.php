@@ -2,14 +2,14 @@
 @section(('styles'))
 @endsection
 @section('content')
-
-    <form  method="post"  enctype="multipart/form-data">
+    <div class="bg-gray" style="padding-top: 20px !important; padding-bottom: 20px !important;">
+       <form  method="post"  enctype="multipart/form-data">
         @csrf
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
                 <div class="col-md-3 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img class="rounded-circle mt-5" width="150px" src="../../../img/bg-img/d1.jpg">
+                        <img class="rounded-circle mt-5" width="150px" src="/public/avatars/default.jpg">
                         <input type="file" name="file" id="inputfile">
                         <span class="font-weight-bold"> </span>
                     </div>
@@ -60,9 +60,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </form>
+          </div>
+       </form>
+    </div>
+
+    </div>
         @endsection
         <!-- ***** Partners Area End ***** -->
         @section(('scripts'))

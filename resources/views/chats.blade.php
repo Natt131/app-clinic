@@ -3,24 +3,24 @@
 @endsection
 @section('content')
 
-
+    <meta http-equiv="Refresh" content="10">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
+    <div class="bg-gray" style="padding-top: 20px !important; padding-bottom: 20px !important;">
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card chat-app">
                     <div id="plist" class="people-list">
-                        <div class="input-group">
+         {{--               <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
                             <input type="text" class="form-control" placeholder="Search...">
-                        </div>
+                        </div>--}}
                         <ul class="list-unstyled chat-list mt-2 mb-0">
                             @foreach($users as $use)
                                 <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+{{--                                    <img src="/public/public/avatars/default.png" alt="avatar">--}}
                                     <div class="about">
                                         <div class="name">{{$use->name}}</div>
                                         <a class="status" href="chats?user_id={{$use->id}}"> <i class="fa fa-circle offline"></i> Перейти к диалогу.. </a>
@@ -41,12 +41,12 @@
                                         <small>Last seen: 2 hours ago</small>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 hidden-sm text-right">
-                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
-                                </div>
+{{--                                <div class="col-lg-6 hidden-sm text-right">--}}
+{{--                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>--}}
+{{--                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>--}}
+{{--                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>--}}
+{{--                                    <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                         <div class="chat-history">
@@ -101,6 +101,10 @@
     </div>
 
 </div>
+    </div>
+    <script type="text/javascript">
+      // setTimeout(function () { location.reload(true); }, 5000);
+    </script>
     @endsection
     <!-- ***** Partners Area End ***** -->
     @section(('scripts'))
