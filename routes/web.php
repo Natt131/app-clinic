@@ -16,7 +16,6 @@
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
 
-
     //страницы докторов
     Route::get('/doc_profile/{id}', [\App\Http\Controllers\DoctorsController::class, 'doctor'])->name('doc_profile');//Route::get('/doc_profile/{id}',
     //редактирование профиля
@@ -40,12 +39,27 @@
     Route::group(['prefix' => 'chats'], function () {
         Route::get('', [\App\Http\Controllers\ChatController::class, 'list']);
         Route::post('', [\App\Http\Controllers\ChatController::class, 'create']);
+
     });
+
+    Route::post('complain', [\App\Http\Controllers\ChatController::class, 'complain']);
 
     Route::get('/reg', [\App\Http\Controllers\AccountController::class, 'registration'])->name('reg');
 
     Route::get('/account', [\App\Http\Controllers\UserController::class, 'account'])->name('account')->middleware('auth');
     Route::post('/account', [\App\Http\Controllers\UserController::class, 'user_info_add'])->name('/account');
+
+
+
+    Route::get('/admin', [\App\Http\Controllers\AdminUserController::class, 'index']);
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/message_complaint', [\App\Http\Controllers\AdminUserController::class, 'messageComplain']);
+        Route::get('message_complaint/{id}', [\App\Http\Controllers\AdminUserController::class, 'messageComplainChat']);
+       // Route::get('/message_complaint', [\App\Http\Controllers\AdminUserController::class, 'index']);
+
+    });
+
+
 
     require __DIR__.'/auth.php';
 

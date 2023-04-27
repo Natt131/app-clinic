@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Models\chatComplain;
 use App\Models\doctors;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\DB;
@@ -46,12 +47,27 @@ class ChatController extends Controller
         $doctor=DB::table('doctors')
           //  ->join('uss', 'chats.user_id', '=', 'users.id')
             // ->join('do', 'users.id', '=', 'orders.user_id')
-            ->select('doctors.name', 'doctors.family', 'doctors.avatar')
+            ->select('doctors.name', 'doctors.family', 'doctors.avatar', 'doctors.id_user')
             ->where('doctors.id_user', '=', $request->user_id)//
             ->get()->first();
         //dd($doctor);
 
        // dd($users);
         return view('chats', ['chats'=>$chats, 'doctor'=>$doctor, 'users'=>$users]);
+    }
+
+    public function complain(Request $request) {
+        $complain = new chatComplain();
+
+        dd($request);
+        $complain->name = $request->name;
+        $complain->id_user = $request->id_user;
+        $complain->id_user_indicted = $request->id_user_indicted;
+        $complain->reason =  $request->reason;
+
+        $complain->save();
+
+        return response()->json(['success'=>'Form is successfully submitted!']);
+
     }
 }

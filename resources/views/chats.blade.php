@@ -1,9 +1,15 @@
 @extends('layouts.master')
 @section(('styles'))
+    <style>
+        .hidden {
+            display:none; !important;
+        }
+    </style>
 @endsection
 @section('content')
 
-    <meta http-equiv="Refresh" content="10">
+  {{--  <meta http-equiv="Refresh" content="10">--}}
+  {{--<meta name="csrf_token" content="{{ csrf_token() }}" />--}}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <div class="bg-gray" style="padding-top: 20px !important; padding-bottom: 20px !important;">
     <div class="container">
@@ -17,6 +23,7 @@
                             </div>
                             <input type="text" class="form-control" placeholder="Search...">
                         </div>--}}
+
                         <ul class="list-unstyled chat-list mt-2 mb-0">
                             @foreach($users as $use)
                                 <li class="clearfix">
@@ -32,13 +39,16 @@
                     <div class="chat">
                         <div class="chat-header clearfix">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
                                         <img src="/public/{{$doctor->avatar}}" alt="avatar">
                                     </a>
                                     <div class="chat-about">
                                         <h6 class="m-b-0">{{$doctor->name}} {{$doctor->family}}</h6>
                                         <small>Last seen: 2 hours ago</small>
+                                    </div>
+                                    <div class="chat-about" style="float:right">
+                                        <button type="button" style="background-color: #bdbbbb" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Пожаловаться</button>
                                     </div>
                                 </div>
 {{--                                <div class="col-lg-6 hidden-sm text-right">--}}
@@ -93,6 +103,7 @@
                                 <button type="submit" class="input-group-text"><i class="fa fa-send"></i></button>
                                 </div>  </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -102,8 +113,98 @@
 
 </div>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Отправить жалобу</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Отправить жалобу модератору</label>
+                            <input type="text" class="form-control hidden" style="display:none !important;" id="id_indicted" value="{{$doctor->id_user}}">
+                            <input type="text" class="form-control hidden" style="display:none !important;" id="id_user" value="{{auth()->user()->id}}">
+
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="reason">Причина</label>
+                            </div>
+                            <select class="custom-select" id="reason">
+                                <option selected>Другое</option>
+                                <option value="1">Спам</option>
+                                <option value="2">Оскорбления</option>
+                                <option value="3">Мошенничество</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary" id="send" onclick="send()">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+      function send(){
+
+          /*   var complain = {};
+       *   complain.id_user = $("#id_user").val();
+            complain.id_user_indicted = $("#id_indicted").val();
+            complain.reason = $('#reason option:selected').text();
+             var json = JSON.stringify(complain);  */
+
+         let a = $("#id_user").val();
+         let b = $("#id_indicted").val();
+         let c = $('#reason option:selected').text();
+
+          $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('[name="_token"]').val()
+              }
+          });
+          $.ajax({
+              url: "/complain",
+              type:"POST",
+              headers: {
+                  'X-CSRF-TOKEN': $('[name="_token"]').val()
+              },
+              data:{
+                 // "_token": "{{ csrf_token() }}",
+                  id_user:a,
+                  id_user_indicted:b,
+                  reason:c,
+              },
+              success:function(response){
+                  console.log(response);
+              },
+          });
+      }
+  </script>
     <script type="text/javascript">
-      // setTimeout(function () { location.reload(true); }, 5000);
+        //запуск модальки
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var recipient = button.data('whatever'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('.modal-title').text('New message to ' + recipient);
+            modal.find('.modal-body input').val(recipient);
+
+
+            var sendBtn=$('#send');
+        })
+
     </script>
     @endsection
     <!-- ***** Partners Area End ***** -->
