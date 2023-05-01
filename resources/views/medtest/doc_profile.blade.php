@@ -1,5 +1,13 @@
 @extends('layouts.master')
 @section(('styles'))
+    <style>
+        .article a {
+        color: #0258c4; !important;
+    }
+        .article a:hover {
+        color:lightskyblue; !important;
+    }
+    </style>
 @endsection
 @section('content')
 
@@ -39,7 +47,9 @@
             <div class="p-3 py-5">
                 <div class="line">
                     <div class="col-md-12"><label class="labels">Опубликованные статьи </label> <br>
-                        <div class="col-md-12"><label class="label">статьи....</label></div>
+                        @foreach($articles as $article)
+                        <div class="col-md-12"><a  href="/services/{{$article->id}}" class="label article">{{$article->name}}</a></div>
+                        @endforeach
                     </div>
                 </div>
          </div>

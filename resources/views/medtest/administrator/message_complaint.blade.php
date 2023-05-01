@@ -27,9 +27,35 @@
                 <th scope="col">Пользователь</th>
                 <th scope="col">Причина жалобы</th>
                 <th scope="col">Просмотреть</th>
+                <th scope="col">Удалить</th>
             </tr>
             </thead>
             <tbody>
+            @foreach($chats as $chat)
+                <tr>
+                    <th scope="row">{{$chat->created_at}}</th>
+                    <td>{{$chat->name}}</td>
+                    <td>{{$chat->reason}}</td>
+                    <td>
+
+                        <a href="message_complaint/{{$chat->id}}" style="background-color: #0a4ffc; !important;
+                         padding: 5px;
+                         color:white;
+                         border-radius: 5px;"> Подробнее</a>
+                        {{--                    <a href="services/{{$post->id}}">--}}
+
+                    </td>
+                    <td>
+
+                        <a href="/deleteChatComplain/{{$chat->id}}" style="background-color: #ff0000; !important;
+                         padding: 5px;
+                         color:white;
+                         border-radius: 5px;"> Удалить</a>
+                        {{--                    <a href="services/{{$post->id}}">--}}
+
+                    </td>
+                </tr>
+            @endforeach
             <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>

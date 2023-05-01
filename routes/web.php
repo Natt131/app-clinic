@@ -4,6 +4,7 @@
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);//home
     Route::get('/contact', function () {
+
         return view('medtest/contact');
     });
     Route::get('/about', [\App\Http\Controllers\DoctorsController::class, 'list'])->name('about');
@@ -42,29 +43,34 @@
 
     });
 
-    Route::post('complain', [\App\Http\Controllers\ChatController::class, 'complain']);
+    Route::post('/complain', [\App\Http\Controllers\ChatComplainController::class, 'complainChat'])->name('complain');
+    Route::post('/complain_article', [\App\Http\Controllers\ArticleComplainController::class, 'complainArticle'])->name('complain_article');
+    Route::get('/deleteChatComplain/{id}', [\App\Http\Controllers\ChatComplainController::class, 'deleteChatComplain'])->name('deleteChatComplain');
+    Route::get('/deleteArticleComplain/{id}', [\App\Http\Controllers\ArticleComplainController::class, 'deleteArticleComplain'])->name('deleteArticleComplain');
+    Route::get('/deleteUserComplain/{id}', [\App\Http\Controllers\AdminUserController::class, 'deleteUserComplain'])->name('deleteUserComplain');
+    Route::get('/deleteArticle/{id}', [\App\Http\Controllers\ArticleController::class, 'deleteArticle'])->name('deleteArticle');
+
 
     Route::get('/reg', [\App\Http\Controllers\AccountController::class, 'registration'])->name('reg');
+    Route::get('/get_verify', [\App\Http\Controllers\DoctorsController::class, 'getVerify'])->name('getVerify');
+    Route::post('/createVerify', [\App\Http\Controllers\DoctorsController::class, 'createVerify'])->name('createVerify');
 
     Route::get('/account', [\App\Http\Controllers\UserController::class, 'account'])->name('account')->middleware('auth');
     Route::post('/account', [\App\Http\Controllers\UserController::class, 'user_info_add'])->name('/account');
-
-
 
     Route::get('/admin', [\App\Http\Controllers\AdminUserController::class, 'index']);
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/message_complaint', [\App\Http\Controllers\AdminUserController::class, 'messageComplain']);
         Route::get('message_complaint/{id}', [\App\Http\Controllers\AdminUserController::class, 'messageComplainChat']);
-       // Route::get('/message_complaint', [\App\Http\Controllers\AdminUserController::class, 'index']);
-
+        Route::get('/article_complaint', [\App\Http\Controllers\AdminUserController::class, 'articleComplain']);
+        Route::get('article_complaint/{id}', [\App\Http\Controllers\AdminUserController::class, 'getArticleComplain']);
+        Route::get('/verify_list', [\App\Http\Controllers\AdminUserController::class, 'getVerifyList']);
+        Route::get('verify_doctor/{id}', [\App\Http\Controllers\AdminUserController::class, 'getVerify']);
+        Route::get('verifyUser/{id}', [\App\Http\Controllers\AdminUserController::class, 'verifyUser']);
     });
 
-
-
     require __DIR__.'/auth.php';
-
     Auth::routes();
-
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');//home
 /*    Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();

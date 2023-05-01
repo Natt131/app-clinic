@@ -34,7 +34,7 @@
                             <div class="medica-doctors-card wow fadeInUp" data-wow-delay="0.4s">
                                 <h5>Статьи</h5>
                                 <p> Просмотреть входщие жалобы пользователей на статьи</p>
-                                <a href="/article_complain">Перейти</a>
+                                <a href="/admin/article_complaint">Перейти</a>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4">

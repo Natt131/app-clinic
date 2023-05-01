@@ -79,4 +79,12 @@ class ArticleController extends Controller
         $categories = Category::all();
         return view('medtest/create_article', ['categories' => $categories]);
     }
+
+    public function deleteArticle($id)
+    {
+        Article::where('id', $id)->firstOrFail()->delete();
+        $posts = Article::all();
+        $categories = Category::all();
+        return view('services', ['posts' => $posts], ['categories' => $categories]);
+    }
 }
