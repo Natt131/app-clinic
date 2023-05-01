@@ -56,18 +56,18 @@ class ChatController extends Controller
         return view('chats', ['chats'=>$chats, 'doctor'=>$doctor, 'users'=>$users]);
     }
 
-    public function complain(Request $request) {
-        $complain = new chatComplain();
-
-        dd($request);
-        $complain->name = $request->name;
-        $complain->id_user = $request->id_user;
-        $complain->id_user_indicted = $request->id_user_indicted;
-        $complain->reason =  $request->reason;
-
-        $complain->save();
-
-        return response()->json(['success'=>'Form is successfully submitted!']);
-
-    }
+//    public function complain(Request $request) {//
+//        $complain = new chatComplain();
+//       // dd("ssssjsjsjs");
+//        dd($request);
+//        $complain->name = $request->name;
+//        $complain->id_user = $request->id_user;
+//        $complain->id_user_indicted = $request->id_user_indicted;
+//        $complain->reason =  $request->reason;
+//
+//        $complain->save();
+//
+//        return response()->json(['success'=>'Form is successfully submitted!']);
+//
+//    }
 }

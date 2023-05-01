@@ -17,7 +17,6 @@
     </style>
 @endsection
 @section('content')
-    <meta http-equiv="Refresh" content="10">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <div class="bg-gray" style="padding-top: 20px !important; padding-bottom: 20px !important;">
         <div class="container">
@@ -30,30 +29,45 @@
                                     <div class="col-lg-12">
                                         <div class="chat-about">
                                             <h6 class="m-b-0">Подавший жалобу</h6>
-                                            <small>Такой-то вот...</small>
+                                            <small>{{$info[1]}}</small>
                                         </div>
                                         <div class="chat-about" style="float:right">
                                             <h6 class="m-b-0">Обвиняемый</h6>
-                                            <small>И этот такой...</small>
+                                            <small>{{$info[0]}}</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="chat-history">
-                                <ul class="m-b-0">
+                                <div class="chat-history">
+                                    <ul class="m-b-0">
 
-                                        <li class="clearfix">
-                                            <div class="message-data text-right">
-                                 <span class="message-data-time"> data-time</span>
-                            </div>
+                                        @foreach($chats as $chat)
+                                            <!-- Single Service -->
+                                            <li class="clearfix">
+                                                <div class="message-data
+                                <?php
+                                if($chat->user_id == $info[1])
+                                    print('text-right">');
+                                else
+                                    print('">');
+                                ?>
+                                 <span class="message-data-time"> {{$chat->created_at}}</span>
+                                </div>
+                                <div class="message other-message
+                        <?php
+                        if($chat->user_id == $info[1])
+                            print('float-right">');
+                        else
+                            print('">');
+                        ?>
 
-                            <div class="message other-message float-right">
-                               message 1
-                            </div>
+                       {{$chat->message}} </div>
                         </li>
-                                    <div class="message other-messaget">
-                                        message 2
-                                    </div>
+               {{--                 ; border-radius: 8px; margin: 10px">
+                                        <p style="color: #0b0b0b"> {{$chat->message}}</p>
+                                    </div>--}}
+                                @endforeach
                         </ul>
                         </div>
                         <div class="chat-message clearfix" style="background-color: #ebf0fa">
@@ -64,7 +78,7 @@
                                         <a href="/admin/message_complaint" class="input-group-text look-button-back"> Вернуться к списку</a>
                                 {{--</div>
                                 <div class="input-group">--}}
-                                    <button type="submit" class="input-group-text look-button"> Удалить жалобу </button>
+                                    <a href="/deleteChatComplain/{{$info[2]}}" type="submit" class="input-group-text look-button"> Удалить жалобу </a>
                                 </div>
                             </form>
 

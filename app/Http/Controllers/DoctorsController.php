@@ -13,18 +13,37 @@ class DoctorsController extends Controller
     {
         $doctor = doctors::findOrFail($id);
         $infodoc=DB::table('info_docs')->where('id_doc', $doctor->id)->first();
-        if($infodoc== null)
-        {
-            $doctor->education="нет сведений";
-            $doctor->certificate="нет сведений";
-            $doctor->spec="нет сведений";
+        $articles=DB::table('articles')->where('id_user','=', $doctor->id_user)->orderBy('created_at', 'desc')->get();
+       // dd($articles);
+        if ($articles==null){
+            $articles->name="не опубликовано ни одной статьи";
+            if($infodoc== null)
+            {
+                $doctor->education="нет сведений";
+                $doctor->certificate="нет сведений";
+                $doctor->spec="нет сведений";
+            }
+            else {
+                $doctor->education = $infodoc->education;
+                $doctor->certificate = $infodoc->certificate;
+                $doctor->spec = $infodoc->spec;
+            }
+            return view('medtest/doc_profile', ['doctor' => $doctor],['articles' => $articles] );//, ['posts'=>$posts]
         }
         else {
-            $doctor->education = $infodoc->education;
-            $doctor->certificate = $infodoc->certificate;
-            $doctor->spec = $infodoc->spec;
+            if($infodoc== null)
+            {
+                $doctor->education="нет сведений";
+                $doctor->certificate="нет сведений";
+                $doctor->spec="нет сведений";
+            }
+            else {
+                $doctor->education = $infodoc->education;
+                $doctor->certificate = $infodoc->certificate;
+                $doctor->spec = $infodoc->spec;
+            }
+            return view('medtest/doc_profile', ['doctor' => $doctor],['articles' => $articles] );
         }
-        return view('medtest/doc_profile', ['doctor' => $doctor]);//, ['posts'=>$posts]
     }
 
     public function list()

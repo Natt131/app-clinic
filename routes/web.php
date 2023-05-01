@@ -4,6 +4,7 @@
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);//home
     Route::get('/contact', function () {
+
         return view('medtest/contact');
     });
     Route::get('/about', [\App\Http\Controllers\DoctorsController::class, 'list'])->name('about');
@@ -42,14 +43,15 @@
 
     });
 
-    Route::post('complain', [\App\Http\Controllers\ChatController::class, 'complain']);
+    Route::post('/complain', [\App\Http\Controllers\ChatComplainController::class, 'complainChat'])->name('complain');
+    Route::post('/complain_article', [\App\Http\Controllers\ArticleComplainController::class, 'complainArticle'])->name('complain_article');
+    Route::get('/deleteChatComplain/{id}', [\App\Http\Controllers\ChatComplainController::class, 'deleteChatComplain'])->name('deleteChatComplain');
+
 
     Route::get('/reg', [\App\Http\Controllers\AccountController::class, 'registration'])->name('reg');
 
     Route::get('/account', [\App\Http\Controllers\UserController::class, 'account'])->name('account')->middleware('auth');
     Route::post('/account', [\App\Http\Controllers\UserController::class, 'user_info_add'])->name('/account');
-
-
 
     Route::get('/admin', [\App\Http\Controllers\AdminUserController::class, 'index']);
     Route::group(['prefix' => 'admin'], function () {
@@ -59,12 +61,8 @@
 
     });
 
-
-
     require __DIR__.'/auth.php';
-
     Auth::routes();
-
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');//home
 /*    Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();
