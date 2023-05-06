@@ -26,7 +26,14 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
-            <!-- Email Address -->
+                  <!-- Name -->
+                  <div class="form-group">
+                      <x-label for="lastname" :value="__('Фамилия')" />
+                      <x-input id="lastname" class="block mt-1 w-full" type="text" name="name" :value="old('lastname')" required autofocus />
+                  </div>
+
+
+                  <!-- Email Address -->
             <div  class="form-group">
                 <x-label for="email" :value="__('Email')" />
 

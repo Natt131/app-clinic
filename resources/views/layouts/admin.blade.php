@@ -46,18 +46,21 @@
                             <div class="collapse navbar-collapse" id="medicaMenu">
                                 <!-- Menu Area -->
                                 <ul class="navbar-nav ml-auto">
+                               {{--     <li class="nav-item active">
+                                        <a class="nav-link" href="/"> Вернуться на сайт<span class="sr-only">(current)</span></a>
+                                    </li>--}}
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="/admin">Главная <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Просмотреть жалобы</a>
+                                        <a class="nav-link" href="/admin/message_complaint">Жалобы из диалогов</a>
 
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/">Подтверждение профиля???</a>
+                                        <a class="nav-link" href="/admin/verify_list">Подтверждение профиля</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/">Сообщения</a>
+                                        <a class="nav-link" href="/admin/article_complaint">Жалобы на статьи</a>
                                     </li>
                                 </ul>
                             </div>

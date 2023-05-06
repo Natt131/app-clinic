@@ -45,6 +45,7 @@ class RegisteredDoctorController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'lastname' => $request->family,
             'email' => $request->email,
             'role_user' => "doctor",
             'password' => Hash::make($request->password),

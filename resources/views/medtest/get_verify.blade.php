@@ -13,7 +13,7 @@
             <div class="container" >
                 <div class="row">
                     <!-- Contact Form Area -->
-                    <div class="col-12 col-lg-8" style="background-color: white">
+                    <div class="col-12 col-lg-16" style="background-color: white">
                         <div class="contact-form">
                             <h5 class="mb-50">Получить подтверждение профиля специалиста </h5>
 
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-4">
+                   {{-- <div class="col-12 col-lg-4">
                         <div class="content-sidebar">
                             <!-- Medica Emergency Card -->
                             <div class="medica-emergency-card mb-4">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </section>

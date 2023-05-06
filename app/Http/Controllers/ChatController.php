@@ -12,6 +12,15 @@ use DB;
 
 class ChatController extends Controller
 {
+    public function index()
+    {
+        $users = DB::table('chats')
+            ->join('users', 'chats.user_id', '=', 'users.id')
+            //->join('doctors', 'doctors.id_user', '=', $request->user_id)
+            ->select('users.name',  'users.id')->distinct()//
+            ->get();
+        return view('medtest/messanger', [ 'users'=>$users]);
+    }
     public function create(Request $request){
         $user = auth()->user();
         $chat = new Chat();

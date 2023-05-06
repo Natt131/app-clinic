@@ -6,13 +6,17 @@ use App\Models\ArticleComplain;
 use App\Models\chatComplain;
 use App\Models\doctors;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
 
 class AdminUserController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+        if ($user->role_user=='admin')
         return view('medtest/administrator/admin');
+        else return redirect(RouteServiceProvider::HOME);
     }
 
     public function getVerify($id)
@@ -35,6 +39,33 @@ class AdminUserController extends Controller
             ->first();
       //  dd($doctor);
         return view('medtest/administrator/verify_doctor',['doctor'=>$doctor]);
+    }
+
+    public function addVerifyUser($id)
+    {
+       $oldname= DB::table('users')
+            ->where('id','=',$id)
+            ->select('users.name')
+            ->first();
+        $name="✓ ".$oldname->name;
+        if (!str_contains($oldname->name, '✓')) {
+            DB::table('users')
+                ->where('id', '=', $id)
+                ->update([
+                    'name' => $name,
+                ]);
+            DB::table('doctors')
+                ->where('id_user', '=', $id)
+                ->update([
+                    'name' => $name,
+                ]);
+
+        }
+        $doctors = DB::table('doctor_verifies')
+            ->join('doctors', 'doctor_verifies.id_user', '=', 'doctors.id_user')
+            ->select('doctors.*', 'doctor_verifies.id')
+            ->get();
+        return view('medtest/administrator/verify_list',['doctors'=>$doctors]);
     }
 
     public function getVerifyList()

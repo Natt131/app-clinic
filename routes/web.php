@@ -19,6 +19,7 @@
 
     //страницы докторов
     Route::get('/doc_profile/{id}', [\App\Http\Controllers\DoctorsController::class, 'doctor'])->name('doc_profile');//Route::get('/doc_profile/{id}',
+    Route::get('/messanger', [\App\Http\Controllers\ChatController::class, 'index']);//Route::get('/doc_profile/{id}',
     //редактирование профиля
     Route::get('/edit_profile', [\App\Http\Controllers\ProfileDoctorController::class, 'list'])->name('edit_profile')->middleware(['auth']);//Route::get('/doc_profile/{id}',
     Route::post('/edit_profile', [\App\Http\Controllers\ProfileDoctorController::class, 'updateData'])->name('edit_profile');
@@ -54,6 +55,11 @@
     Route::get('/reg', [\App\Http\Controllers\AccountController::class, 'registration'])->name('reg');
     Route::get('/get_verify', [\App\Http\Controllers\DoctorsController::class, 'getVerify'])->name('getVerify');
     Route::post('/createVerify', [\App\Http\Controllers\DoctorsController::class, 'createVerify'])->name('createVerify');
+   Route::post('/store_comment',[\App\Http\Controllers\DoctorsController::class, 'storeComment'])->name('store_comment');
+
+    Route::get('/verifyUser/{id}', [\App\Http\Controllers\AdminUserController::class, 'addVerifyUser']);
+    //grades of doctor
+    Route::get('/grade/{id}/garde/{grade}',[\App\Http\Controllers\DoctorsController::class, 'storeGrade']);
 
     Route::get('/account', [\App\Http\Controllers\UserController::class, 'account'])->name('account')->middleware('auth');
     Route::post('/account', [\App\Http\Controllers\UserController::class, 'user_info_add'])->name('/account');
@@ -66,7 +72,7 @@
         Route::get('article_complaint/{id}', [\App\Http\Controllers\AdminUserController::class, 'getArticleComplain']);
         Route::get('/verify_list', [\App\Http\Controllers\AdminUserController::class, 'getVerifyList']);
         Route::get('verify_doctor/{id}', [\App\Http\Controllers\AdminUserController::class, 'getVerify']);
-        Route::get('verifyUser/{id}', [\App\Http\Controllers\AdminUserController::class, 'verifyUser']);
+        //Route::get('verifyUser/{id}', [\App\Http\Controllers\AdminUserController::class, 'verifyUser']);
     });
 
     require __DIR__.'/auth.php';

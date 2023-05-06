@@ -19,7 +19,8 @@
                             <nav class="top-menu">
                                 <ul>
                                     @if  (Auth::check())
-                                    <li><a href="account">Личный кабинет</a></li>
+                                        @if  ($user = auth()->user()->role_user=='doctor') <li>
+                                            <a  href="/edit_profile"> Личный кабинет</a></li>@endif
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <div class="form-group">
@@ -63,9 +64,9 @@
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Сервисы</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="about">Доктора</a>
-                                            <a class="dropdown-item" href="services">Статьи</a>
-                                            <a class="dropdown-item" href="#">Новости</a>
+                                            <a class="dropdown-item" href="/about">Доктора</a>
+                                            <a class="dropdown-item" href="/messanger">Мессенджер</a>
+                                            <a class="dropdown-item" href="/get_verify">Подтвердить профиль</a>
 
 {{--                                            <a class="dropdown-item" href="elements">Elements</a>--}}
                                         </div>
@@ -79,10 +80,13 @@
 {{--                                    <li class="nav-item">--}}
 {{--                                        <a class="nav-link" href="blog">Новости</a>--}}
 {{--                                    </li>--}}
+                                    @if  (Auth::check()&&$user = auth()->user()->role_user=='doctor')
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Контакты</a>
+                                        <a class="nav-link" style="color:#954de3" href="/get_verify"> Подтвердить профиль</a>
+{{--                                        <a  href="/get_verify">Контакты</a>--}}
                                    {{--     href="contact"--}}
                                     </li>
+                                    @endif
                                 </ul>
                                 <!-- Search Form -->
                   {{--              <div class="header-search-form ml-auto">

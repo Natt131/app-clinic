@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-7">
                         <div class="medica-about-text">
-                            <h2> Страница для администратора сайта<span>WebMED</span> </h2>
+                            <h2> Страница для администратора сайта</h2>
                             <p> ааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа.</p>
                         </div>
                     </div>
@@ -38,10 +38,10 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4">
-                            <div class="medica-doctors-card wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="medica-emergency-card wow fadeInUp" data-wow-delay="0.4s">
                                 <h5>Подтверждение профиля</h5>
                                 <p>Подтвердить профиль специалиста на сайте</p>
-                                <a href="/conf_profile">Перейти</a>
+                                <a href="/admin/verify_list">Перейти</a>
                             </div>
                         </div>
                     </div>
