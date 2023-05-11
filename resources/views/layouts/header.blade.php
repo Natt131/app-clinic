@@ -5,22 +5,31 @@
 </div>
 
 <!-- ***** Header Area Start ***** -->
-<header class="header-area">
+<header class="header-area" style="margin-top: -20px !important;">
     <!-- Top Header Area -->
     <div class="top-header-area gradient-background">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 h-100">
                     <div class="h-100 d-md-flex justify-content-between align-items-center">
-                        <div class="top-header-social-info">
+                        <div class="top-header-social-info" >
                             <a @if  (Auth::check()&&$user = auth()->user()->role_user=='doctor') href="edit_profile" @else href="/account" @endif data-placement="left" > Добро пожаловать, @if  (Auth::check()) {{$user = auth()->user()->name}} @else гость! @endif </a>
                         </div>
                         <div class="top-header-menu">
                             <nav class="top-menu">
                                 <ul>
                                     @if  (Auth::check())
-                                    <li><a href="account">Личный кабинет</a></li>
-                                        <li> <a href=" {{ route('logout') }}"> Выход </a></li>
+                                        @if  ($user = auth()->user()->role_user=='doctor') <li>
+                                            <a  href="/edit_profile"> Личный кабинет</a></li>@endif
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <button type="submit" >
+                                                    {{ __('Выход') }}
+                                                </button>
+                                            </div>
+                                        </form>
+{{--                                        <li> <a href=" {{ route('logout') }}"> Выход </a></li>--}}
                                     @else
                                     <li><a href="login">Вход</a></li>
                                     <li><a href="register">Регистарция</a></li>
@@ -55,37 +64,44 @@
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Сервисы</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="about">Доктора</a>
-                                            <a class="dropdown-item" href="services">Статьи</a>
-                                            <a class="dropdown-item" href="blog">Новости</a>
-                                            <a class="dropdown-item" href="contact">Контакты</a>
+                                            <a class="dropdown-item" href="/about">Доктора</a>
+                                            <a class="dropdown-item" href="/messanger">Мессенджер</a>
+
+                                        @if (Auth::check()&&$user = auth()->user()->role_user=='doctor')
+                                            <a class="dropdown-item" href="/get_verify">Подтвердить профиль</a>
+                                            <a class="dropdown-item" href="/create_article">Опубликовтаь статью</a>
+                                         @endif
 {{--                                            <a class="dropdown-item" href="elements">Elements</a>--}}
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="about">Доктора</a>
+                                        <a class="nav-link" href="/about">Доктора</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="services">Статьи</a>
+                                        <a class="nav-link" href="/services">Статьи</a>
                                     </li>
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a class="nav-link" href="blog">Новости</a>--}}
+{{--                                    </li>--}}
+                                    @if  (Auth::check()&&$user = auth()->user()->role_user=='doctor')
                                     <li class="nav-item">
-                                        <a class="nav-link" href="blog">Новости</a>
+                                        <a class="nav-link" style="color:#954de3" href="/get_verify"> Подтвердить профиль</a>
+{{--                                        <a  href="/get_verify">Контакты</a>--}}
+                                   {{--     href="contact"--}}
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contact">Контакты</a>
-                                    </li>
+                                    @endif
                                 </ul>
                                 <!-- Search Form -->
-                                <div class="header-search-form ml-auto">
+                  {{--              <div class="header-search-form ml-auto">
                                     <form action="#">
                                         <input type="search" class="form-control" placeholder="Найти..." id="search" name="search">
                                         <input class="d-none" type="submit" value="submit">
                                     </form>
-                                </div>
+                                </div>--}}
                                 <!-- Search btn -->
-                                <div id="searchbtn">
-                                    <i class="ti-search" aria-hidden="true"></i>
-                                </div>
+{{--                                <div id="searchbtn">--}}
+{{--                                    <i class="ti-search" aria-hidden="true"></i>--}}
+{{--                                </div>--}}
                             </div>
                         </nav>
                     </div>

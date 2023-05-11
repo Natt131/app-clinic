@@ -2,7 +2,7 @@
     'use strict';
 
     // :: Index of Plugins Active Code :: //
-    
+
     // :: 1.0 Preloader Active Code
     // :: 2.0 Fullscreen Active Code
     // :: 3.0 Sticky Active Code
@@ -14,7 +14,7 @@
     // :: 9.0 CounterUp Active Code
     // :: 10.0 ScrollUp Active Code
     // :: 11.0 PreventDefault a Click
-    // :: 12.0 wow Active Code    
+    // :: 12.0 wow Active Code
 
     var $window = $(window);
 
@@ -46,11 +46,11 @@
     $('[data-toggle="tooltip"]').tooltip()
 
     // :: 5.0 Nicescroll Active Code
-    $("body, textarea").niceScroll({
-        cursorcolor: "#151515",
-        cursorwidth: "6px",
-        background: "#f0f0f0"
-    });
+    // $("body, textarea").niceScroll({
+    //     cursorcolor: "#151515",
+    //     cursorwidth: "6px",
+    //     background: "#f0f0f0"
+    // });
 
     // :: 6.0 Owl Carousel Slider
     if ($.fn.owlCarousel) {

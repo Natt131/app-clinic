@@ -1,32 +1,5 @@
-/* [ -- Master Stylesheet -- ] */
-
-/* ------------- Index of Stylesheet -------------
-:: 1.0 Import Web Fonts
-:: 2.0 Import All CSS
-:: 3.0 Base CSS
-:: 4.0 Header Area CSS
-:: 5.0 Welcome Area CSS
-:: 6.0 About Us Area CSS
-:: 7.0 Service Area CSS
-:: 8.0 Doctor Area CSS
-:: 9.0 Testimonials Area CSS
-:: 10.0 Call to Action Area CSS
-:: 11.0 Book an appoinment Area CSS
-:: 12.0 Footer Area CSS
-:: 13.0 Breadcumb Area CSS
-:: 14.0 CTA Area CSS
-:: 15.0 Department Area CSS
-:: 16.0 Services Area CSS
-:: 17.0 Blog Area CSS
-:: 18.0 Contact Area CSS
-:: 19.0 Shortcode Area CSS
------------------------------------------------- */
-
-/* :: 1.0 Import Web Fonts */
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Roboto:400,500,700');
-
-/* :: 2.0 Import All CSS */
 
 @import '../css/bootstrap.min.css';
 @import '../css/owl.carousel.css';
@@ -296,6 +269,11 @@ img {
     background-color: #e0f3f9;
 }
 
+.bg-darkgray {
+    background-color: #d0f3fd;
+}
+
+
 .bg-transparent {
     background-color: transparent;
 }
@@ -332,25 +310,9 @@ img {
     height: 800px !important;
 }
 
-#scrollUp {
-    background: #243eff;
-    background: -webkit-linear-gradient(to right, #3de6fa, #243eff);
-    background: -webkit-linear-gradient(left, #3de6fa, #243eff);
-    background: linear-gradient(to right, #3de6fa, #243eff);
-    border-radius: 0;
-    bottom: 100px;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
-    color: #fff;
-    font-size: 24px;
-    height: 40px;
-    line-height: 38px;
-    right: 0;
-    text-align: center;
-    width: 40px;
-}
 
 .section_padding_100 {
-    padding: 100px 0;
+    padding: 40px 0;
 }
 
 .section_padding_50 {
@@ -383,7 +345,7 @@ img {
 
 .section_heading {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 1;
 }
@@ -454,10 +416,8 @@ img {
 }
 
 .gradient-background {
-    background: #243eff;
-    background: -webkit-linear-gradient(to right, #3de6fa, #243eff);
-    background: -webkit-linear-gradient(left, #3de6fa, #243eff);
-    background: linear-gradient(to right, #3de6fa, #243eff);
+    /*background: linear-gradient(to right, #719bf8, #2166f8);*/
+    background: linear-gradient(to right, #a9defc, #92bbfa);
 }
 
 .gradient-background-overlay,
@@ -468,6 +428,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
+
 }
 
 .gradient-background-overlay:after,
@@ -480,19 +441,13 @@ img {
     top: 0;
     left: 0;
     background: #243eff;
-    background: -webkit-linear-gradient(to right, #3de6fa, #243eff);
-    background: -webkit-linear-gradient(left, #3de6fa, #243eff);
     background: linear-gradient(to right, #3de6fa, #243eff);
     opacity: 0.8;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 
-.background-overlay:after {
-    background: rgba(36, 62, 255, 0.8);
-}
-
 .nicescroll-rails {
-    z-index: 999999 !important;
+    z-index: 99 !important;
 }
 
 /* :: 4.0 Header Area CSS */
@@ -533,6 +488,7 @@ img {
 }
 
 .main-header-area {
+    background: linear-gradient(to right, #ccedff, #a2c7fa);
     width: 100%;
     height: 100px;
     position: relative;
@@ -744,7 +700,7 @@ img {
 .medica-catagories-card,
 .latest-news-widget-area {
     padding: 50px 40px;
-    background-color: #38c3fb;
+    background-color: #87a6fa !important;
     width: 100%;
 }
 

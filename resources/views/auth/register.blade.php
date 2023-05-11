@@ -2,7 +2,7 @@
 @section(('styles'))
 @endsection
 @section('content')
-
+    <div class="bg-gray" style="padding-top: 20px !important; padding-bottom: 20px !important;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
@@ -13,8 +13,9 @@
             <div class="form-toggle"></div>
             <div class="form-panel one">
                 <div class="form-header">
-                    <h1>Registration</h1>
+                    <h1>Регистрация пользователя</h1>
                 </div>
+
                 <div class="form-content">
               <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -25,7 +26,14 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
-            <!-- Email Address -->
+                  <!-- Name -->
+                  <div class="form-group">
+                      <x-label for="lastname" :value="__('Фамилия')" />
+                      <x-input id="lastname" class="block mt-1 w-full" type="text" name="name" :value="old('lastname')" required autofocus />
+                  </div>
+
+
+                  <!-- Email Address -->
             <div  class="form-group">
                 <x-label for="email" :value="__('Email')" />
 
@@ -51,22 +59,20 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-            </div>
-                <x-button class="form-group">
-                    {{ __('Зарегестрироваться') }}
+            <div class="flex items-center justify-end mt-5" style="display: inline">
+                <x-button class=" btn medica-btn form-group"  style="font-size:20px;background-color: #755ffd !important; margin: auto">
+                    {{ __('Зарегистрироваться') }}
                 </x-button>
+            </div>
         </form>
-                    <a class="form-group" style="background-color: cornflowerblue; height:50px; width:250px; font-size: 16px; font-family: Arialf; margin:10px; padding:10px " href="doctor-register">
+                    <br>
+                    <a class="btn medica-btn form-group" style="font-size:20px;background-color: #ab9dfd; width:340px !important; margin: auto" href="doctor-register">
                        Зарегестрироваться как доктор
                     </a>
                 </div>
                 </div>
         </div>
-
+    </div>
 @endsection
 <!-- ***** Partners Area End ***** -->
 @section(('scripts'))

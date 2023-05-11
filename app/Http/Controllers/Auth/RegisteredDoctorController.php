@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Speciality;
 use App\Models\User;
 use App\Models\doctors;
 use App\Providers\RouteServiceProvider;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
+use DB;
 
 class RegisteredDoctorController extends Controller
 {
@@ -23,8 +25,8 @@ class RegisteredDoctorController extends Controller
      */
     public function create()
     {
-
-        return view('auth\doctor-register');//auth.register
+        $specialities=Speciality::all();
+        return view('auth\doctor-register',  ['specialities' => $specialities]);//auth.register
     }
 
     /**
@@ -45,6 +47,7 @@ class RegisteredDoctorController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'lastname' => $request->family,
             'email' => $request->email,
             'role_user' => "doctor",
             'password' => Hash::make($request->password),
@@ -65,6 +68,11 @@ class RegisteredDoctorController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $user=auth()->user();
+        DB::table('doctors')
+            ->where('email', '=', $user->email)
+            ->update(['id_user' => $user->id]);
 
         return redirect(RouteServiceProvider::HOME);
     }
