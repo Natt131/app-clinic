@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Doctor;
 use App\Models\chatComplain;
 use App\Models\doctors;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ChatController extends Controller
         $users = DB::table('chats')
             ->join('users', 'chats.user_id', '=', 'users.id')
             //->join('doctors', 'doctors.id_user', '=', $request->user_id)
-            ->select('users.name',  'users.id')->distinct()//
+            ->select('users.*')->distinct()//
             ->get();
         return view('medtest/messanger', [ 'users'=>$users]);
     }
@@ -50,18 +51,37 @@ class ChatController extends Controller
         $users = DB::table('chats')
             ->join('users', 'chats.user_id', '=', 'users.id')
             //->join('doctors', 'doctors.id_user', '=', $request->user_id)
-            ->select('users.name',  'users.id')->distinct()//
+            ->select('users.name', 'users.lastname', 'users.id')->distinct()//
             ->get();
 
         $doctor=DB::table('doctors')
           //  ->join('uss', 'chats.user_id', '=', 'users.id')
             // ->join('do', 'users.id', '=', 'orders.user_id')
-            ->select('doctors.name', 'doctors.family', 'doctors.avatar', 'doctors.id_user')
+            ->select('doctors.*')
             ->where('doctors.id_user', '=', $request->user_id)//
             ->get()->first();
-        //dd($doctor);
 
-       // dd($users);
+//   $doctor1=new Doctor();
+//   $doctor1->avatar="avatars/default.jpg";
+//   $doctor1->speciality="Пациент";
+
+        if($doctor==null)
+        {
+            $user = DB::table('users')
+                //->join('users', 'chats.doctor_id', '=', 'users.id')
+                //->join('doctors', 'doctors.id_user', '=', $request->user_id)
+                ->select('users.name', 'users.lastname', 'users.id')->distinct()//
+                ->where('users.id','=',$request->user_id)
+                ->first();
+           // dd($user);
+            $doctor1=new Doctor();
+            $doctor1->avatar="avatars/default.jpg";
+            $doctor1->id_speciality="Пациент";
+            $doctor1->name=$user->name;
+            $doctor1->family=$user->lastname;
+            $doctor=$doctor1;
+           // dd($doctor->speciality);
+        }
         return view('chats', ['chats'=>$chats, 'doctor'=>$doctor, 'users'=>$users]);
     }
 

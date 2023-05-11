@@ -14,8 +14,11 @@ class ArticleController extends Controller
     public function article($id)
     { //$id
         $article = Article::findOrFail($id);
-
-        return view('medtest/article', ['article' => $article]);//, ['posts'=>$posts]
+        $doctor=DB::table('doctors')
+            ->where('id_user','=', $article->id_user)
+            ->first();
+//dd($doctor);
+        return view('medtest/article', ['article' => $article],['doctor'=>$doctor]);//, ['posts'=>$posts]
     }
 
 

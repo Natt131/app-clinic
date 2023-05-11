@@ -13,7 +13,7 @@
             <div class="col-12">
                 <div class="section_heading">
                     {{--    <img src="../../../img/icons/doctor.png" alt="">--}}
-                    <h2>Сообщения</h2>
+                    <h2>Статьи</h2>
                     <p>Здесь можно посмотреть жалобы на опубликованные пользователями статьи.</p>
                 </div>
             </div>

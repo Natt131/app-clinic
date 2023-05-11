@@ -1,5 +1,16 @@
 @extends('layouts.master')
 @section(('styles'))
+    <style>
+        /*
+        a .author{
+            font-size: 18px;
+        }
+        a .author:hover{
+            color: #0a4ffc;
+        }
+        */
+
+    </style>
 @endsection
 @section('content')
     @if(session()->has('message'))
@@ -12,6 +23,7 @@
                     <div class="col-12 col-lg-7">
                         <div class="medica-about-text">
                             <h2>{{$article->name}}</h2>
+                            <h4> Автор статьи: <a  href="/doc_profile/{{$doctor->id}}"> {{$doctor->name}} {{$doctor->family}}</a></h4>
                             <p>{{$article->description}}</p>
                             <p>{{$article->text}}</p>
 
@@ -34,7 +46,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Отправить жалобу</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Сообщить о нарушении</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -76,13 +76,22 @@
                                 <input id="id_city"   type="text" name="id_city" :value="old('id_city')" placeholder="Город" required autofocus />
                             </div>
                             <div class="col-md-12 form-group">
-                                <label class="labels" for="id_clinic" :value="__('Клиника')" >Больница: </label>
+                                <label class="labels" for="id_clinic" :value="__('Клиника')" >Медицинское учреждение: </label>
                                 <input id="id_clinic"   type="text" name="id_clinic" :value="old('surname')" placeholder="Больница"required autofocus />
                             </div>
 
                             <div  class="col-md-12 form-group">
+
                                 <label class="labels" for="id_speciality" :value="__('Специальность')"> Специальность: </label>
-                                <input id="id_speciality"   type="text" name="id_speciality" :value="old('surname')" placeholder="Специальность"required autofocus />
+                                <select class="form-control input-lg" name="id_speciality" id="id_speciality" data-dependent="cat">
+                                    <option value="">-- Выберите специальность --</option>
+                                    @foreach ($specialities as $cat)
+                                        <option name="{{$cat->id}}" value={{$cat->name}}> {{$cat->name}}</option>
+                                    @endforeach
+                                </select>
+
+                               {{-- <label class="labels" for="id_speciality" :value="__('Специальность')"> Специальность: </label>
+                                <input id="id_speciality"   type="text" name="id_speciality" :value="old('surname')" placeholder="Специальность"required autofocus />--}}
                             </div>
                             <!-- Password -->
                             <div  class="col-md-12 form-group">

@@ -43,17 +43,24 @@
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            @if (Route::has('password.request'))
+
+{{--                            @if (Route::has('password.request'))
                                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                                     {{ __('Забыли пароль?') }}
                                 </a>
-                            @endif
+                            @endif--}}
                     </div>
                     <div class="form-group">
                         <button type="submit"> {{ __('Войти') }}</button>
                     </div>
                     </div>
                 </form>
+                <div class="form-group">
+                    <a href=" "> {{ __('Зарегистрироваться') }}</a>
+                </div>
+                <div class="form-group">
+                    <a href="" > {{ __('Зарегистрироваться как доктор') }}</a>
+                </div>
             </div>
         </div>
     </div>

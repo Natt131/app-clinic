@@ -66,8 +66,11 @@
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="/about">Доктора</a>
                                             <a class="dropdown-item" href="/messanger">Мессенджер</a>
-                                            <a class="dropdown-item" href="/get_verify">Подтвердить профиль</a>
 
+                                        @if (Auth::check()&&$user = auth()->user()->role_user=='doctor')
+                                            <a class="dropdown-item" href="/get_verify">Подтвердить профиль</a>
+                                            <a class="dropdown-item" href="/create_article">Опубликовтаь статью</a>
+                                         @endif
 {{--                                            <a class="dropdown-item" href="elements">Elements</a>--}}
                                         </div>
                                     </li>

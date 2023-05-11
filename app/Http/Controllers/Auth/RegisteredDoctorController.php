@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Speciality;
 use App\Models\User;
 use App\Models\doctors;
 use App\Providers\RouteServiceProvider;
@@ -24,7 +25,8 @@ class RegisteredDoctorController extends Controller
      */
     public function create()
     {
-        return view('auth\doctor-register');//auth.register
+        $specialities=Speciality::all();
+        return view('auth\doctor-register',  ['specialities' => $specialities]);//auth.register
     }
 
     /**

@@ -59,16 +59,14 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Уже зарегистрированы?') }}
-                </a>
-                <x-button class=" btn medica-btn form-group"  style="background-color: lightskyblue !important; margin: 20px">
-                    {{ __('Зарегестрироваться') }}
+            <div class="flex items-center justify-end mt-5" style="display: inline">
+                <x-button class=" btn medica-btn form-group"  style="font-size:20px;background-color: #755ffd !important; margin: auto">
+                    {{ __('Зарегистрироваться') }}
                 </x-button>
             </div>
         </form>
-                    <a class="btn medica-btn form-group" style="width:300px !important; margin: 20px"  href="doctor-register">
+                    <br>
+                    <a class="btn medica-btn form-group" style="font-size:20px;background-color: #ab9dfd; width:340px !important; margin: auto" href="doctor-register">
                        Зарегестрироваться как доктор
                     </a>
                 </div>

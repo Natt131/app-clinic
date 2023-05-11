@@ -8,6 +8,8 @@
         return view('medtest/contact');
     });
     Route::get('/about', [\App\Http\Controllers\DoctorsController::class, 'list'])->name('about');
+    Route::get('/about/slug/{category}', [\App\Http\Controllers\DoctorsController::class, 'doctors_by_spec'])->name('about');
+
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'blogs'])->name('blog');
 
     Route::get('/elements', function () {
@@ -19,7 +21,7 @@
 
     //страницы докторов
     Route::get('/doc_profile/{id}', [\App\Http\Controllers\DoctorsController::class, 'doctor'])->name('doc_profile');//Route::get('/doc_profile/{id}',
-    Route::get('/messanger', [\App\Http\Controllers\ChatController::class, 'index']);//Route::get('/doc_profile/{id}',
+    Route::get('/messanger', [\App\Http\Controllers\ChatController::class, 'index'])->middleware(['auth']);;//Route::get('/doc_profile/{id}',
     //редактирование профиля
     Route::get('/edit_profile', [\App\Http\Controllers\ProfileDoctorController::class, 'list'])->name('edit_profile')->middleware(['auth']);//Route::get('/doc_profile/{id}',
     Route::post('/edit_profile', [\App\Http\Controllers\ProfileDoctorController::class, 'updateData'])->name('edit_profile');
@@ -39,8 +41,8 @@
 
     //чаты
     Route::group(['prefix' => 'chats'], function () {
-        Route::get('', [\App\Http\Controllers\ChatController::class, 'list']);
-        Route::post('', [\App\Http\Controllers\ChatController::class, 'create']);
+        Route::get('', [\App\Http\Controllers\ChatController::class, 'list'])->middleware(['auth']);
+        Route::post('', [\App\Http\Controllers\ChatController::class, 'create'])->middleware(['auth']);
 
     });
 

@@ -53,14 +53,14 @@
                                         <a class="nav-link" href="/admin">Главная <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/admin/message_complaint">Жалобы из диалогов</a>
+                                        <a class="nav-link" href="/admin/message_complaint">Нарушения из диалогов</a>
 
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/admin/verify_list">Подтверждение профиля</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/admin/article_complaint">Жалобы на статьи</a>
+                                        <a class="nav-link" href="/admin/article_complaint">Нарушения в статьях</a>
                                     </li>
                                 </ul>
                             </div>

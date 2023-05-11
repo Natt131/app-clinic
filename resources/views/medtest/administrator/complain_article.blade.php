@@ -28,12 +28,12 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="chat-about">
-                                            <h6 class="m-b-0">Подавший жалобу</h6>
+                                            <h6 class="m-b-0">Сообщивший о нарушении</h6>
                                             <small>{{$info[1]}}</small>
                                         </div>
                                         <div class="chat-about" style="float:right">
-                                            <h6 class="m-b-0">Обвиняемый</h6>
-                                            <small>{{$info[0]}}</small>
+                                            <h6 class="m-b-0">Автор статьи</h6>
+                                            <small>Александр</small>
                                         </div>
                                     </div>
                                 </div>

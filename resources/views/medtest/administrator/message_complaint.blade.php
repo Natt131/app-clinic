@@ -14,7 +14,7 @@
                 <div class="section_heading">
                 {{--    <img src="../../../img/icons/doctor.png" alt="">--}}
                     <h2>Сообщения</h2>
-                    <p>Здесь можно посмотреть жалобы пользователей из диалогов</p>
+                    <p>Здесь можно посмотреть сообщения о нарушениях из диалогов</p>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <tr>
                 <th scope="col">Дата</th>
                 <th scope="col">Пользователь</th>
-                <th scope="col">Причина жалобы</th>
+                <th scope="col">Сообщение о нарушении</th>
                 <th scope="col">Просмотреть</th>
                 <th scope="col">Удалить</th>
             </tr>
@@ -37,13 +37,10 @@
                     <td>{{$chat->name}}</td>
                     <td>{{$chat->reason}}</td>
                     <td>
-
                         <a href="message_complaint/{{$chat->id}}" style="background-color: #0a4ffc; !important;
                          padding: 5px;
                          color:white;
                          border-radius: 5px;"> Подробнее</a>
-                        {{--                    <a href="services/{{$post->id}}">--}}
-
                     </td>
                     <td>
 
@@ -56,32 +53,6 @@
                     </td>
                 </tr>
             @endforeach
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>
-
-                    <a href="message_complaint/{{1}}" style="background-color: #0a4ffc; !important;
-                         padding: 5px;
-                         color:white;
-                         border-radius: 5px;"> Подробнее</a>
-{{--                    <a href="services/{{$post->id}}">--}}
-
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
             </tbody>
         </table>
 

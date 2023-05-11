@@ -345,7 +345,7 @@ img {
 
 .section_heading {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 1;
 }
@@ -700,7 +700,7 @@ img {
 .medica-catagories-card,
 .latest-news-widget-area {
     padding: 50px 40px;
-    background-color: #38c3fb;
+    background-color: #87a6fa !important;
     width: 100%;
 }
 

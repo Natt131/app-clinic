@@ -14,25 +14,27 @@
                         <span class="font-weight-bold"> </span>
                     </div>
                 </div>
-                <div class="col-md-5 border-right">
+                <div class="col-md-4 border-right">
                     <div class="p-3 py-5">
                         <div class="row mt-3">
                             <div class="col-md-12 form-group"><label class="labels">Новый email: </label>
-                                <input type="text" name="email" class="form-control" placeholder="enter new email" value="">
+                                <input type="text" name="email" class="form-control" placeholder="email" value="">
                             </div>
                             <div class="col-md-12 form-group"><label  for="city-select" class="labels">Город: </label>
-                                <select class="form-control input-lg" name="id_сity" id="id_city" data-dependent="city" onclick="getClinic();">
+                                <input type="text" name="id_city" class="form-control" id="id_city" placeholder="город" value="">
+                         {{--       <select class="form-control input-lg" name="id_сity" id="id_city" data-dependent="city" onclick="getClinic();">
                                     <option value="">-- Выберите город --</option>
                                     @foreach ($cities as $city)
                                         <option class="dynamic" value={{$city->id}}>{{$city->name}}</option>
                                     @endforeach
-                                </select>
+                                </select>--}}
                             </div>
 
                             <p></p>
                             <div class="col-md-12 form-group"><label  for="clinic-select" class="labels">Клиника: </label>
-                                <select class="form-control input-lg dynamic" name="clinic" id="clinic" data-dependent="clinics">
-                                </select>
+                                <input type="text" name="id_clinic" class="form-control" id="id_clinic" placeholder="клника" value="">
+                                {{--    <select class="form-control input-lg dynamic" name="clinic" id="clinic" data-dependent="clinics">
+                                </select>--}}
                             </div>
 
                             {{ csrf_field() }}
@@ -41,7 +43,7 @@
 
                    </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="p-3 py-5">
                         <div class="line">
 

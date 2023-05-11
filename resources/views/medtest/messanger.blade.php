@@ -1,11 +1,11 @@
 
 @extends('layouts.master')
 @section(('styles'))
-    <style>
-        .hidden {
-            display:none; !important;
-        }
-    </style>
+{{--    <style>--}}
+{{--        .hidden {--}}
+{{--            display:none; !important;--}}
+{{--        }--}}
+{{--    </style>--}}
 @endsection
 @section('content')
     @if(session()->has('message'))
@@ -32,7 +32,7 @@
                                     <li class="clearfix">
                                         {{--                                    <img src="/public/public/avatars/default.png" alt="avatar">--}}
                                         <div class="about">
-                                            <div class="name">{{$use->name}}</div>
+                                            <div class="name">{{$use->name}} {{$use->lastname}}</div>
                                             <a class="status" href="chats?user_id={{$use->id}}"> <i class="fa fa-circle offline"></i> Перейти к диалогу.. </a>
                                         </div>
                                     </li>
@@ -44,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="chat-about">
-                                            <h6 class="m-b-0">Выбирите диалог слева</h6>
+                                            <h6 class="m-b-0">Выберите диалог слева</h6>
 
                                         </div>
                                     </div>

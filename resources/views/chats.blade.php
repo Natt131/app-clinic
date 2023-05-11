@@ -32,7 +32,7 @@
                                     <li class="clearfix">
                                         {{--                                    <img src="/public/public/avatars/default.png" alt="avatar">--}}
                                         <div class="about">
-                                            <div class="name">{{$use->name}}</div>
+                                            <div class="name">{{$use->name}} {{$use->lastname}}</div>
                                             <a class="status" href="chats?user_id={{$use->id}}"> <i class="fa fa-circle offline"></i> Перейти к диалогу.. </a>
                                         </div>
                                     </li>
@@ -44,14 +44,14 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                            <img src="/public/{{$doctor->avatar}}" alt="avatar">
+                                            <img  src="/public/{{$doctor->avatar}}" alt="avatar">
                                         </a>
                                         <div class="chat-about">
                                             <h6 class="m-b-0">{{$doctor->name}} {{$doctor->family}}</h6>
-                                            <small>Last seen: 2 hours ago</small>
+                                            <small>{{$doctor->id_speciality}}</small>
                                         </div>
                                         <div class="chat-about" style="float:right">
-                                            <button type="button" style="background-color: #bdbbbb" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Пожаловаться</button>
+                                            <button type="button" style="background-color: #6b6bee" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Сообщить о нарушении</button>
                                         </div>
                                     </div>
                                     {{--                                <div class="col-lg-6 hidden-sm text-right">--}}
@@ -120,7 +120,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Отправить жалобу</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Сообщить о нарушении</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,7 +129,7 @@
                     <form  method="post" action="{{route('complain')}}" enctype="multipart/form-data">
                         @csrf
 
-                        <label for="recipient-name" class="col-form-label">Отправить жалобу модератору</label>
+                        <label for="recipient-name" class="col-form-label">Отправить сообщение модератору</label>
                         <input type="text" name="id_user_indicted" class="form-control hidden" style="display:none !important;" id="id_indicted" value="{{$doctor->id_user}}">
                         <input type="text" name="id_user" class="form-control hidden" style="display:none !important;" id="id_user" value="{{auth()->user()->id}}">
                         <div class="input-group mb-3">
