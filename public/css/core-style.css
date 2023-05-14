@@ -1267,7 +1267,8 @@ select.form-control:not([size]):not([multiple]) {
 
 .single-blog-area,
 .single-blog-area .post-thumb {
-    position: relative;
+    /*position: relative;*/
+    display: inline;
     z-index: 1;
 }
 

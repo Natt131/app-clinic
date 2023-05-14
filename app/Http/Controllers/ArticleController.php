@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,6 +37,10 @@ class ArticleController extends Controller
 
     public function list()
     {
+        //позволяет найти статьи юзера по его ид
+//        $comments =User::find(28)->post;
+//        $comments =Article::find(28)->post;
+//        dd($comments);
         $posts = Article::all();
         $categories = Category::all();
         return view('services', ['posts' => $posts], ['categories' => $categories]);

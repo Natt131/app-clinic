@@ -76,7 +76,6 @@
                                 <a href="/deleteArticle/{{$article->id}}" type="submit" class="input-group-text look-button"> Удалить статью </a>
                             </div>
                         </form>
-
                     </div>
                         </div>
 

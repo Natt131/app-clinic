@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Chat;
 use App\Models\ArticleComplain;
 use App\Models\chatComplain;
 use App\Models\doctors;
@@ -146,6 +147,7 @@ class AdminUserController extends Controller
             ->first();
 
         $info=array($user_ind->name,$user->name, $id, $user_ind->id);
+
         $chats = DB::table('chat_complains')
             ->join('chats', 'chat_complains.id_user', '=', 'chats.user_id')
             ->select('chat_complains.*', 'chats.*')
@@ -154,7 +156,21 @@ class AdminUserController extends Controller
             ->where('chats.user_id','=', $user->id)
             ->get();
 
-        return view('medtest/administrator/complain_chat', ['chats' => $chats], ['info'=>$info],['user'=>$user_ind]);//,
+   /*     $chats1=DB::table('chats')
+            ->where('chats.user_id','=', $user->id)
+            ->where('chats.doctor_id','=',$user_ind->id)
+            ->get();*/
+        $chats1=Chat::where(function ($query) use ($user,$user_ind) {
+            $query->where('user_id', '=', $user->id)
+                ->where('doctor_id', '=', $user_ind->id);
+        })->orWhere(function ($query) use ($user,$user_ind) {
+            $query->where('doctor_id', '=', $user->id)
+                ->where('user_id', '=', $user_ind->id);
+        })->get();
+      //  dd($chats1);
+      //  dd($info[2]);
+        return view('medtest/administrator/complain_chat', ['chats' => $chats1], ['info'=>$info],['user'=>$user_ind]);//,
+//        return view('medtest/administrator/complain_chat', ['chats' => $chats], ['info'=>$info],['user'=>$user_ind]);//,
     }
 
     //удаляем пользователя и все что с ним связано

@@ -10,7 +10,8 @@
     Route::get('/about', [\App\Http\Controllers\DoctorsController::class, 'list'])->name('about');
     Route::get('/about/slug/{category}', [\App\Http\Controllers\DoctorsController::class, 'doctors_by_spec'])->name('about');
 
-    Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'blogs'])->name('blog');
+   // Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'blogs'])->name('blog');
+    Route::get('/blog', [\App\Http\Controllers\CrawlerController::class, 'getCrawler'])->name('blog');
 
     Route::get('/elements', function () {
         return view('medtest/elements');
@@ -54,6 +55,9 @@
     Route::get('/deleteArticle/{id}', [\App\Http\Controllers\ArticleController::class, 'deleteArticle'])->name('deleteArticle');
 
 
+    Route::get('/crawler', [\App\Http\Controllers\ChatComplainController::class, 'getCrawler']);
+
+
     Route::get('/reg', [\App\Http\Controllers\AccountController::class, 'registration'])->name('reg');
     Route::get('/get_verify', [\App\Http\Controllers\DoctorsController::class, 'getVerify'])->name('getVerify');
     Route::post('/createVerify', [\App\Http\Controllers\DoctorsController::class, 'createVerify'])->name('createVerify');
@@ -76,6 +80,10 @@
         Route::get('verify_doctor/{id}', [\App\Http\Controllers\AdminUserController::class, 'getVerify']);
         //Route::get('verifyUser/{id}', [\App\Http\Controllers\AdminUserController::class, 'verifyUser']);
     });
+
+    //emaail verification
+    Auth::routes(['verify' => true]);
+
 
     require __DIR__.'/auth.php';
     Auth::routes();
