@@ -1,16 +1,5 @@
 @extends('layouts.master')
 @section(('styles'))
-    <style>
-        /*
-        a .author{
-            font-size: 18px;
-        }
-        a .author:hover{
-            color: #0a4ffc;
-        }
-        */
-
-    </style>
 @endsection
 @section('content')
     @if(session()->has('message'))
@@ -26,7 +15,6 @@
                             <h4> Автор статьи: <a  href="/doc_profile/{{$doctor->id}}"> {{$doctor->name}} {{$doctor->family}}</a></h4>
                             <p>{{$article->description}}</p>
                             <p>{{$article->text}}</p>
-
                         </div>
                     </div>
                     <div class="col-12 col-lg-5">
@@ -41,7 +29,7 @@
         Что-то не так? Вы можете  <a style="color: blue"  data-toggle="modal" data-target="#exampleModal"> связаться </a>с модератором
         </div>
     </div>
-
+@if (Auth::check())
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -77,6 +65,7 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection
 <!-- ***** Partners Area End ***** -->
 @section(('scripts'))

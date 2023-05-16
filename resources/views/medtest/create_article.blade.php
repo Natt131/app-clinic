@@ -33,7 +33,6 @@
                             <div class="line" style="padding-left: 20px"> <br/>
                                 <div class="col-12 form-group"><label  class="labels">Текст сатьи: </label><br>
 {{--                                    <input  class="form-control"  style="height: 130px;" type="textarea" name="text">--}}
-
                                         <textarea style="width:500px" name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Введите текст статьи..."></textarea>
 
                                 </div>

@@ -8,6 +8,6 @@ class BlogController extends Controller
 {
     public function blogs() {
        // return view('medtest/administrator/admin');
-        return view('medtest/blog');
+        return view('medtest/blog1');
     }
 }

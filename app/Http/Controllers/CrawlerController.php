@@ -8,6 +8,7 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class CrawlerController extends Controller
 {
+   // public $arr=array();
     public function getCrawler(){
         $pageUrl = 'https://www.mk.ru/social/health/'; //'http://www.tradetu.com';
         if(!$pageUrl) {
@@ -58,20 +59,27 @@ class CrawlerController extends Controller
         foreach ($article as $i=>$domElement){
             $_crawler1 = new Crawler($domElement);
             $_crawler = $_crawler1->filter('div.listing-item__content');
+          //  $str=$_crawler->filter('a')->attr('href');
+            $articleUrl1 = strstr($_crawler->filter('a')->attr('href'), 'social');//https://www.mk.ru/
+            $articleUrl = strstr($articleUrl1, '.html',true);
+            $articleUrl=str_replace('/','--',$articleUrl);
             $arr[$i]=array(
                 'articleName' => $_crawler->filter('h3')->text(),
-                'articleUrl' => $_crawler->filter('a')->attr('href'),
+                'articleUrl' => $articleUrl,//$_crawler->filter('a')->attr('href'),
                 'articleContent' => $_crawler->filter('p')->text(),
                 'articleImg' => $_crawler1->filter('div.listing-item__picture')->filter('img')->attr('src')
             );
         }
-        // dd($arr[0]['articleName']);
-        $this->getConttentArticle($arr[0]['articleUrl']);
+         //dd($arr[0]['articleUrl']);
+        //$this->getConttentArticle($arr[0]['articleUrl']);
+        //возвращаем массив всех статей последних
         return $arr;
     }
 
     public function getConttentArticle($url){
-        $pageUrl = $url; //'http://www.tradetu.com';
+        $url = str_replace('--','/',$url);
+        $pageUrl = 'https://www.mk.ru/'.$url.'.html'; //'http://www.tradetu.com';
+        //dd($pageUrl,'content');
         if(!$pageUrl) {
             return response()->json($this->getActionStatus("ERROR", "Product page url not found."));
         }
@@ -79,9 +87,13 @@ class CrawlerController extends Controller
         $result = $this->makeWebRequest($pageUrl, $errors);
 
         if(empty($errors)) {
-            $response['content'] = $this->parseContentArticle($result, '');
+           // dd('content');
+            $response= $this->parseContentArticle($result);
+           // dd($response);
+            return view('medtest/news', ['response' => $response[0]]);
+/*            $response['content'] = $this->parseContentArticle($result, '');
             $response['Status'] = 'SUCCESS';
-            $response['Message'] = 'Article downloaded successfully';
+            $response['Message'] = 'Article downloaded successfully';*/
         } else {
             $response['Errors'] = $errors;
             $response['Status'] = 'ERROR';

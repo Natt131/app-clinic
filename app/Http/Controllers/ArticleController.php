@@ -73,7 +73,7 @@ class ArticleController extends Controller
         $product->image = 'products\\' . $filename;
 
         $product->id_category = $request->id_cat;
-        $product->text = $request->text;
+        $product->text = $request->message;
 
         $product->id_user = $user->id;
         $product->save();

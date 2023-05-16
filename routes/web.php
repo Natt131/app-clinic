@@ -11,7 +11,8 @@
     Route::get('/about/slug/{category}', [\App\Http\Controllers\DoctorsController::class, 'doctors_by_spec'])->name('about');
 
    // Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'blogs'])->name('blog');
-    Route::get('/blog', [\App\Http\Controllers\CrawlerController::class, 'getCrawler'])->name('blog');
+    Route::get('/news', [\App\Http\Controllers\CrawlerController::class, 'getCrawler'])->name('blog');
+    Route::get('/news/{url}', [\App\Http\Controllers\CrawlerController::class, 'getConttentArticle']);
 
     Route::get('/elements', function () {
         return view('medtest/elements');
