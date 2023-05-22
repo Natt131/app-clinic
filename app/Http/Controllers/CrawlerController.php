@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use Symfony\Component\DomCrawler\Crawler;
 
 class CrawlerController extends Controller
@@ -70,8 +69,6 @@ class CrawlerController extends Controller
                 'articleImg' => $_crawler1->filter('div.listing-item__picture')->filter('img')->attr('src')
             );
         }
-         //dd($arr[0]['articleUrl']);
-        //$this->getConttentArticle($arr[0]['articleUrl']);
         //возвращаем массив всех статей последних
         return $arr;
     }
@@ -87,13 +84,9 @@ class CrawlerController extends Controller
         $result = $this->makeWebRequest($pageUrl, $errors);
 
         if(empty($errors)) {
-           // dd('content');
             $response= $this->parseContentArticle($result);
-           // dd($response);
+
             return view('medtest/news', ['response' => $response[0]]);
-/*            $response['content'] = $this->parseContentArticle($result, '');
-            $response['Status'] = 'SUCCESS';
-            $response['Message'] = 'Article downloaded successfully';*/
         } else {
             $response['Errors'] = $errors;
             $response['Status'] = 'ERROR';
@@ -106,10 +99,7 @@ class CrawlerController extends Controller
     private function parseContentArticle($result){
         $response = '';
         $crawler = new Crawler($result);
-        //   dd($crawler, "newnewnew");
         $filter = $crawler->filter('div.article-grid__content');
-        // $len1 = $filter->filter('li.article-listing__item');
-        // $article=$len1->filter('article');
         $article=array();
         foreach ($filter as $i=>$domElement){
             $_crawler = new Crawler($domElement);

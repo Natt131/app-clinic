@@ -65,8 +65,10 @@
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Сервисы</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="/about">Доктора</a>
-                                            <a class="dropdown-item" href="/messanger">Мессенджер</a>
-
+                                            <a class="dropdown-item" href="/news">Новости</a>
+                                          @if(Auth::check())
+                                                <a class="dropdown-item" href="/messanger">Мессенджер</a>
+                                            @endif
                                         @if (Auth::check()&&$user = auth()->user()->role_user=='doctor')
                                             <a class="dropdown-item" href="/get_verify">Подтвердить профиль</a>
                                             <a class="dropdown-item" href="/create_article">Опубликовтаь статью</a>
@@ -80,9 +82,14 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="/services">Статьи</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/news">Новости</a>
+                                    </li>
 {{--                                    <li class="nav-item">--}}
-{{--                                        <a class="nav-link" href="blog">Новости</a>--}}
-{{--                                    </li>--}}
+{{--
+              <a class="nav-link" href="blog">Новости</a>--}}
+{{--
+                          </li>--}}
                                     @if  (Auth::check()&&$user = auth()->user()->role_user=='doctor')
                                     <li class="nav-item">
                                         <a class="nav-link" style="color:#954de3" href="/get_verify"> Подтвердить профиль</a>

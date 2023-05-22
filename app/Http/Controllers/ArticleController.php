@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
     public function article($id)
-    { //$id
+    {
         $article = Article::findOrFail($id);
         $doctor=DB::table('doctors')
             ->where('id_user','=', $article->id_user)
             ->first();
-//dd($doctor);
+
         return view('medtest/article', ['article' => $article],['doctor'=>$doctor]);//, ['posts'=>$posts]
     }
 
@@ -32,6 +32,7 @@ class ArticleController extends Controller
             $posts=DB::table('articles')->where('id_category', '=', $id_category[0]->id)->get();
             return view('services', ['posts' => $posts], ['categories' => $categories]);
         }
+
         return false;
     }
 
@@ -71,7 +72,6 @@ class ArticleController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->image = 'products\\' . $filename;
-
         $product->id_category = $request->id_cat;
         $product->text = $request->message;
 
@@ -79,12 +79,14 @@ class ArticleController extends Controller
         $product->save();
         $posts = Article::all();
         $categories = Category::all();
+
         return view('services', ['posts' => $posts],['categories' => $categories]);
     }
 
     public function create()
     {
         $categories = Category::all();
+
         return view('medtest/create_article', ['categories' => $categories]);
     }
 
@@ -93,6 +95,7 @@ class ArticleController extends Controller
         Article::where('id', $id)->firstOrFail()->delete();
         $posts = Article::all();
         $categories = Category::all();
+
         return view('services', ['posts' => $posts], ['categories' => $categories]);
     }
 }
