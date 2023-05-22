@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Models\doctors;
 use App\Models\DoctorVerify;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DoctorsController extends Controller

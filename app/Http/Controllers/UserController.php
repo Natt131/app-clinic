@@ -11,6 +11,5 @@ class UserController extends Controller
         return view('medtest/account');
     }
     public function user_info_add(Request $request){
-dd($request);
     }
 }

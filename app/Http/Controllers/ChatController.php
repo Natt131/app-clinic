@@ -61,10 +61,6 @@ class ChatController extends Controller
             ->where('doctors.id_user', '=', $request->user_id)//
             ->get()->first();
 
-//   $doctor1=new Doctor();
-//   $doctor1->avatar="avatars/default.jpg";
-//   $doctor1->speciality="Пациент";
-
         if($doctor==null)
         {
             $user = DB::table('users')
@@ -87,7 +83,6 @@ class ChatController extends Controller
 
 //    public function complain(Request $request) {//
 //        $complain = new chatComplain();
-//       // dd("ssssjsjsjs");
 //        dd($request);
 //        $complain->name = $request->name;
 //        $complain->id_user = $request->id_user;

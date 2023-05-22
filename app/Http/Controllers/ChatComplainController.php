@@ -6,30 +6,14 @@ use App\Models\chatComplain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Response;
-use App\Models\Crawler;
-use App\Modules\Observer;
-use Psr\Http\Message\UriInterface;
-use Illuminate\Support\Facades\Log;
+//use App\Models\Crawler;
 
-use Illuminate\Support\Facades\Cache;
-use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\RequestException;
-use Spatie\Crawler\CrawlObservers\CrawlObserver;
+use App\Http\Controllers\BaseController;
+use GuzzleHttp\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 class ChatComplainController extends Controller
 {
-    public function list() {
-
-    }
-    public function getCrawler(){
-        Crawler::create()
-            ->ignoreRobots()
-            ->setCrawlObserver(new Observer)
-            ->startCrawling('https://www.lipsum.com');
-        $crawler=Crawler::orderBy('status', 'asc')->get();
-       dd($crawler);
-    }
-
     public function complainChat (Request $request) {//
         $complain = new chatComplain();
         $complain->id_user = $request->id_user;

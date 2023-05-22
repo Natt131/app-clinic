@@ -51,4 +51,3 @@
     <!-- ***** Partners Area End ***** -->
     @section(('scripts'))
     @endsection
-

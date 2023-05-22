@@ -28,11 +28,11 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="chat-about">
-                                            <h6 class="m-b-0">Подавший жалобу</h6>
+                                            <h6 class="m-b-0">Сообщение о нарушении отправлено</h6>
                                             <small>{{$info[1]}}</small>
                                         </div>
                                         <div class="chat-about" style="float:right">
-                                            <h6 class="m-b-0">Обвиняемый</h6>
+                                            <h6 class="m-b-0">Возможный нарушитель</h6>
                                             <small>{{$info[0]}}</small>
                                         </div>
                                     </div>
@@ -41,34 +41,37 @@
                             <div class="chat-history">
                                 <div class="chat-history">
                                     <ul class="m-b-0">
-
                                         @foreach($chats as $chat)
                                             <!-- Single Service -->
                                             <li class="clearfix">
                                                 <div class="message-data
-                                <?php
-                                if($chat->user_id == $info[1])
-                                    print('text-right">');
-                                else
-                                    print('">');
-                                ?>
-                                 <span class="message-data-time"> {{$chat->created_at}}</span>
+                                                 <?php
+                                                if($chat->user_id == $info[3])
+                        //                         print('aaaaaaaaaaaaaaaaaaaaaaaaa');
+                                                    print('float-right">');
+                                                else
+                                                    print('>');
+                                                  //  print('">'.$chat->user_id.'+'.$info[2]);
+                                                ?>
+                                         <span class="message-data-time"> {{$chat->created_at}}</span>
                                 </div>
                                 <div class="message other-message
-                            <?php
-                            if($chat->user_id == $info[1])
-                                print('float-right">');
-                            else
-                                print('">');
-                            ?>
+                        <?php
+                        if($chat->user_id == $info[3])
+//                         print('aaaaaaaaaaaaaaaaaaaaaaaaa');
+                            print('float-right">');
+                        else
+                            print('">');
+                          //  print('">'.$chat->user_id.'+'.$info[2]);
+                        ?>
 
-                           {{$chat->message}} </div>
-                            </li>
-                   {{--                 ; border-radius: 8px; margin: 10px">
-                                            <p style="color: #0b0b0b"> {{$chat->message}}</p>
-                                        </div>--}}
-                                    @endforeach
-                            </ul>
+                       {{$chat->message}} </div>
+                        </li>
+               {{--                 ; border-radius: 8px; margin: 10px">
+                                        <p style="color: #0b0b0b"> {{$chat->message}}</p>
+                                    </div>--}}
+                                @endforeach
+                        </ul>
                         </div>
                         <div class="chat-message clearfix" style="background-color: #ebf0fa">
                             <form  method="" action="" enctype="multipart/form-data">
